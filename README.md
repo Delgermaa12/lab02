@@ -14,10 +14,16 @@ VU
 30- 	results/run-30vu.txt
 100- 	results/run-100vu.txt
 
-5vu baseline хэмжилт: 
-p90: 307.12ms
+Anhnii hemjilt buyu 30 sec ajluulsan 5vu baseline хэмжилт: 
+p90: 277.39ms
+p95: 322.7ms
+throughput: 7.14req/s
+error rate: 0%
+
+
+1min ajluulsan ni 5vu baseline хэмжилт: 
+p90: 285.8ms
 p95: 307.12ms
-avg: 168.49ms
 throughput: 7.31req/s
 error rate: 0%
 
@@ -33,3 +39,10 @@ p95: 233.44ms
 throughput: 149.91req/s
 error rate: 0%
 
+
+SLO ба Thresholds
+Baseline 5vu ni p=95 deer 322.7x1.5=461ms
+
+                                       p95        Exit
+PASS  thresholds-pass.js (p(95)<461)  267.17ms   0
+FAIL  thresholds-fail.js (p(95)<50)   251.65ms   99
