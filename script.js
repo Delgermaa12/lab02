@@ -13,10 +13,10 @@ export const options = {
 };
 
 export default function () {
-  const res = http.get('https://test.k6.io'); // зөвшөөрөгдсөн бай
+  const res = http.get('https://test.k6.io');
 
   check(res, {
-    'status 200 байна': (r) => r.status === 200,
+    'status 200': (r) => r.status === 200,
   });
 
   sleep(1);
