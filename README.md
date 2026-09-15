@@ -45,4 +45,5 @@ Baseline 5vu ni p=95 deer 322.7x1.5=461ms
 
                                        p95        Exit
 PASS  thresholds-pass.js (p(95)<461)  267.17ms   0
+
 FAIL  thresholds-fail.js (p(95)<50)   251.65ms   99
