@@ -76,24 +76,28 @@ Screenshot2 нь: screenshot/stages/Screenshot From 2026-09-20 22-10-07.png
 delgermaa@debian:~/lab02$ grep "p(95)" thresholds-pass.js
     http_req_duration: ['p(95)< 461'], // baseline p95 x 1.5
 
-
-## 4. Локал сервер (Алхам 5)
+## 4. Локал сервер
 
 `local-server/server.js` — Express, `/fast` (шууд) ба `/slow` (100ms саатал).
 
 | Endpoint | p95 (ms) | Throughput | Error rate |
 | --- | --- | --- | --- |
-| /fast | 6.34 | - | 0.00% |
-| /slow | 105.14 | - | 0.00% |
+| /fast | 7.19 | 36.16 req/s (нийт) | 0.00% |
+| /slow | 106.27 | 36.16 req/s (нийт) | 0.00% |
 
 Гаралт: `results/run-local.txt`
 Screenshot1 нь: screenshot/stages/Screenshot From 2026-09-20 23-11-32.png
 Screenshot2 нь: screenshot/stages/Screenshot From 2026-09-20 22-11-38.png
 
 /slow endpoint-д код дотор 100ms-ийн зориудаар оруулсан `setTimeout` саатал
-p95-д шууд тусгагдсан: /fast-ийн p95 (6.34ms)-тай харьцуулахад ~99ms-ээр
-өндөр гарсан нь хэмжилтийн үнэн зөв байдлыг баталгаажуулж байна. Мөн
-thresholds хоёулаа (`p(95)<50` fast-д,
+p95-д шууд тусгагдсан: /fast-ийн p95 (7.19ms)-тай харьцуулахад ~99ms-ээр
+өндөр гарсан нь хэмжилтийн үнэн зөв байдлыг баталгаажуулж байна. Throughput
+нь endpoint тус бүрээр биш, нийт HTTP хүсэлтээр (fast+slow хамт) 36.16
+req/s гарсан — учир нь k6 скрипт нэг iteration тутамд хоёр endpoint рүү
+дараалан хандаж байгаа тул `http_reqs` нийт хоёрыг нэгтгэсэн тоо гаргадаг.
+Мөн thresholds хоёулаа (`p(95)<50` fast-д, `p(95)<200` slow-д) амжилттай
+хангагдсан (PASS, exit code 0).
+
 
 ## Дүгнэлт
 
